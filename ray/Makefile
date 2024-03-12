@@ -1,20 +1,20 @@
-NAME_PROJECT = cub3d
+NAME_PROJECT = raycasting
 
-SRCS = srcs/main/main.c srcs/parser/parser.c srcs/aux/free.c srcs/aux/aux.c
+SRCS = srcs/main.c srcs/functions.c
 
 OBJS = $(SRCS:.c=.o)
 
 FLAGS = -Wall -Wextra -Werror -Iinc/
 MLXFLAGS = -lXext -lX11 -lm -lz
 LIBFT = libft/libft.a
-MLX = minilibx/libmlx_Linux.a
+MLX = minilibx_linux/libmlx_Linux.a
 
 all: $(NAME_PROJECT)
 
 .PHONY: all clean fclean re
 
 $(NAME_PROJECT): $(OBJS)
-	@make -s -C minilibx/
+	@make -s -C minilibx_linux/
 	@make -s -C libft/
 	@cc $(FLAGS) $(OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME_PROJECT) 
 	@echo  "$(CYAN)Build ($(NAME_PROJECT)): $(GREEN)[Success]$(RESET)"
@@ -24,8 +24,6 @@ $(NAME_PROJECT): $(OBJS)
 
 clean:
 	@rm -f $(OBJS)
-	@make clean -s -C minilibx/
-	@make fclean -s -C libft/
 
 fclean: clean
 	@rm -f $(NAME_PROJECT) 
