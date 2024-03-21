@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:07:45 by fsantos2         ###   ########.fr       */
+/*   Created: 2024/02/20 11:35:16 by hlindeza          #+#    #+#             */
+/*   Updated: 2024/03/21 16:31:19 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+# ifndef CUB3D_H
+# define CUB3D_H
 
-t_cub	*cub(void)
+# include <libft.h>
+# include <mlx.h>
+# include <ray.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+#include <math.h>
+#include <parser.h>
+
+typedef struct s_cub
 {
-	static t_cub   cub;
+	void	*initmlx;
+	void	*winmlx;
 
-	return (&cub);
-}
+	t_map	*map_info;
+}			t_cub;
 
-int	main(int argc, char **argv)
-{
+t_cub		*cub(void);
 
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
-		return (0);
-	}
-	if(!init_map_struct(argv[1]))
-		create_player();
-	free_struct_map(cub()->map_info);
-	return (0);
-}
+#endif

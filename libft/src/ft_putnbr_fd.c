@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:07:45 by fsantos2         ###   ########.fr       */
+/*   Created: 2023/03/15 09:41:22 by fsantos2          #+#    #+#             */
+/*   Updated: 2023/03/15 11:34:10 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "libft.h"
 
-t_cub	*cub(void)
+void	string_writer(int n, int fd)
 {
-	static t_cub   cub;
-
-	return (&cub);
+	if (n >= 10)
+		string_writer(n / 10, fd);
+	write(fd, &"0123456789"[n % 10], 1);
 }
 
-int	main(int argc, char **argv)
+void	ft_putnbr_fd(int n, int fd)
 {
-
-	if (argc != 2)
+	if (fd < 0)
+		return ;
+	if (n == -2147483648)
 	{
-		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
-		return (0);
+		write(fd, "-2147483648", 11);
+		return ;
 	}
-	if(!init_map_struct(argv[1]))
-		create_player();
-	free_struct_map(cub()->map_info);
-	return (0);
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n *= -1;
+	}
+	string_writer(n, fd);
 }

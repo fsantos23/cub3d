@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:07:45 by fsantos2         ###   ########.fr       */
+/*   Created: 2024/03/11 18:15:56 by hlindeza          #+#    #+#             */
+/*   Updated: 2024/03/21 16:03:35 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-t_cub	*cub(void)
+void	free_matriz(char ***mrtz)
 {
-	static t_cub   cub;
+	int	i;
 
-	return (&cub);
+	i = 0;
+	if (*mrtz)
+	{
+		while ((*mrtz)[i])
+		{
+			free((*mrtz)[i]);
+			i++;
+		}
+	}
+	free(*mrtz);
+	*mrtz = NULL;
 }
 
-int	main(int argc, char **argv)
+void	free_struct_map(t_map *map)
 {
-
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
-		return (0);
-	}
-	if(!init_map_struct(argv[1]))
-		create_player();
-	free_struct_map(cub()->map_info);
-	return (0);
+	if (map->map)
+		free_matriz(&map->map);
+	if (map->textures)
+		free_matriz(&map->textures);
+	if (map->colors)
+		free_matriz(&map->colors);
+	free(map);
 }

@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:07:45 by fsantos2         ###   ########.fr       */
+/*   Created: 2023/03/28 23:06:59 by fsantos2          #+#    #+#             */
+/*   Updated: 2023/10/02 16:57:26 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-t_cub	*cub(void)
-{
-	static t_cub   cub;
+# include <fcntl.h>
+# include <limits.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-	return (&cub);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 50
+# endif
 
-int	main(int argc, char **argv)
-{
+char	*get_next_line(int fd);
+char	*gnl_ft_strjoin(char *s1, char *s2);
+int		newline_checker(char *buf);
 
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
-		return (0);
-	}
-	if(!init_map_struct(argv[1]))
-		create_player();
-	free_struct_map(cub()->map_info);
-	return (0);
-}
+#endif

@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:07:45 by fsantos2         ###   ########.fr       */
+/*   Created: 2023/03/21 10:44:50 by fsantos2          #+#    #+#             */
+/*   Updated: 2023/04/18 17:14:17 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-t_cub	*cub(void)
-{
-	static t_cub   cub;
+# include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-	return (&cub);
-}
+int	ft_printf(const char *str, ...);
+int	ft_putstr(char *str);
+int	ft_putchar(int i);
+int	ft_putnbr(int n);
+int	ft_printhex(unsigned int i, const char variavel);
+int	ft_putnbru(unsigned int i);
+int	ft_printptr(unsigned long long i);
 
-int	main(int argc, char **argv)
-{
-
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
-		return (0);
-	}
-	if(!init_map_struct(argv[1]))
-		create_player();
-	free_struct_map(cub()->map_info);
-	return (0);
-}
+#endif

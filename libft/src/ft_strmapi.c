@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:07:45 by fsantos2         ###   ########.fr       */
+/*   Created: 2023/03/15 08:48:08 by fsantos2          #+#    #+#             */
+/*   Updated: 2023/03/15 13:29:43 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "libft.h"
 
-t_cub	*cub(void)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	static t_cub   cub;
+	unsigned int	i;
+	char			*str;
 
-	return (&cub);
-}
-
-int	main(int argc, char **argv)
-{
-
-	if (argc != 2)
+	if (!s || !f)
+		return (NULL);
+	str = ft_strdup(s);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i])
 	{
-		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
-		return (0);
+		str[i] = f(i, str[i]);
+		i++;
 	}
-	if(!init_map_struct(argv[1]))
-		create_player();
-	free_struct_map(cub()->map_info);
-	return (0);
+	str[i] = '\0';
+	return (str);
 }

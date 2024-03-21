@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:07:45 by fsantos2         ###   ########.fr       */
+/*   Created: 2023/03/08 13:24:21 by fsantos2          #+#    #+#             */
+/*   Updated: 2023/03/15 13:25:07 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "libft.h"
 
-t_cub	*cub(void)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	static t_cub   cub;
+	size_t	i;
+	size_t	len;
 
-	return (&cub);
-}
-
-int	main(int argc, char **argv)
-{
-
-	if (argc != 2)
+	i = 0;
+	len = ft_strlen(dst);
+	if (dstsize <= len)
+		return (dstsize + ft_strlen(src));
+	while ((len + 1 < dstsize) && src[i])
 	{
-		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
-		return (0);
+		dst[len] = src[i];
+		i++;
+		len++;
 	}
-	if(!init_map_struct(argv[1]))
-		create_player();
-	free_struct_map(cub()->map_info);
-	return (0);
+	dst[len] = '\0';
+	return (ft_strlen(dst) + ft_strlen(&src[i]));
 }

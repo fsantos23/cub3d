@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:07:45 by fsantos2         ###   ########.fr       */
+/*   Created: 2023/03/15 16:25:58 by fsantos2          #+#    #+#             */
+/*   Updated: 2023/09/26 12:01:31 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "libft.h"
 
-t_cub	*cub(void)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	static t_cub   cub;
+	t_list	*header;
 
-	return (&cub);
-}
-
-int	main(int argc, char **argv)
-{
-
-	if (argc != 2)
+	if (!lst || !new)
+		return ;
+	if (!*lst)
 	{
-		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
-		return (0);
+		*lst = new;
+		return ;
 	}
-	if(!init_map_struct(argv[1]))
-		create_player();
-	free_struct_map(cub()->map_info);
-	return (0);
+	header = ft_lstlast(*lst);
+	header->next = new;
+	new->prev = header;
 }
