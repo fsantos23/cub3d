@@ -8,13 +8,6 @@ void put_pixel(int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	quit_game(void)
-{
-	mlx_destroy_window(ray()->mlx, ray()->mlx_win);
-	exit(0);
-	return (0);
-}
-
 unsigned long rgb_to_hex(int r, int g, int b)
 {
     return (r << 16 | g << 8 | b);
@@ -64,13 +57,13 @@ void draw_map(int check)
         while(cub()->map_info->map[y][x])
         {
             if(cub()->map_info->map[y][x] == '1')
-                draw_walls(BLOCK_SIZE / 2, x, y);
+                draw_walls(BLOCK_SIZE, x, y);
             else
-                draw_floor(BLOCK_SIZE / 2, x, y);
+                draw_floor(BLOCK_SIZE, x, y);
             if(ft_isplayer(cub()->map_info->map[y][x]) && check == 1)
             {
-                ray()->player.posx = x * BLOCK_SIZE / 2;
-                ray()->player.posy = y * BLOCK_SIZE / 2;
+                ray()->player.posx = x * BLOCK_SIZE;
+                ray()->player.posy = y * BLOCK_SIZE;
                 ray()->player.pa = direction_player(cub()->map_info->map[y][x]);
                 ray()->player.pdX = cos(ray()->player.pa);
                 ray()->player.pdY = sin(ray()->player.pa);
@@ -145,7 +138,7 @@ double get_fps(void)
     return frame_time;
 }
 
-int move_player(double pdX, double pdY)
+int change_pos(double pdX, double pdY)
 {
     if(!check_pos(pdX, pdY))
         return 0;
@@ -177,5 +170,5 @@ void move_sideways(char letter)
         pa = ray()->player.pa + P2;
     pd_x = cos(pa) * 5;
     pd_y = sin(pa) * 5;
-    move_player(pd_x, pd_y);
+    change_pos(pd_x, pd_y);
 }

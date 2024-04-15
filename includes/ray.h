@@ -25,9 +25,7 @@
 # define P3 3*PI/2
 # define DR 0.0174532925
 
-# define ROWS 8
-# define COLS 8
-# define BLOCK_SIZE 64
+# define BLOCK_SIZE 16
 
 typedef struct s_coords
 {
@@ -67,6 +65,7 @@ typedef struct s_ray
     int 	map_x;
 	int		map_y;
 	double	init_time;
+	t_move	move;
 	t_data	img;
     t_coords player;
 }			t_ray;
@@ -80,7 +79,6 @@ unsigned long rgb_to_hex(int r, int g, int b);
 void draw_map(int check);
 void draw_player(int player_size, int player_x, int player_y);
 void look_sideways(double pa, char letter);
-int move_player(double pdX, double pdY);
 void draw_view_line(double player_angle);
 void draw_line(int x0, int y0, int x1, int y1, int color);
 void draw_floor(int square_size, int x, int y);
@@ -92,5 +90,7 @@ void clear_screen(void *mlx_ptr, void *win_ptr);
 void put_pixel(int x, int y, int color);
 __uint64_t	get_time(void);
 double get_fps(void);
+int change_pos(double pdX, double pdY);
+int exit_game(int keycode);
 
 #endif

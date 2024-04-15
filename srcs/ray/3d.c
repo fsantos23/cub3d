@@ -6,7 +6,7 @@
 /*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:14:44 by fsantos2          #+#    #+#             */
-/*   Updated: 2024/03/21 16:49:41 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:20:36 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,35 +60,35 @@ void draw_rays(double px, double py)
         double a_tan = -1 / tan(ra);
         if(ra > PI)
         {
-            ry = (((int)py >> 6) << 6) - 0.0001;
+            ry = (((int)py / BLOCK_SIZE) * BLOCK_SIZE) - 0.0001;
             rx = (py - ry) * a_tan + px;
-            yo = -64;
+            yo = -BLOCK_SIZE;
             xo = -yo * a_tan;
         }
         if(ra < PI)
         {
-            ry = (((int)py >> 6) << 6) + 64;
+            ry = (((int)py / BLOCK_SIZE) * BLOCK_SIZE) + BLOCK_SIZE;
             rx = (py - ry) * a_tan + px;
-            yo = 64;
+            yo = BLOCK_SIZE;
             xo = -yo * a_tan;
         }
         if(ra == 0 || ra == PI)
         {
             rx = px;
             ry = py;
-            dof = 8;
+            dof = cub()->map_info->height;
         }
-        while(dof < 8)
+        while(dof < cub()->map_info->height)
         {
-            mx = (int)(rx) >> 6;
-            my = (int)(ry) >> 6;
+            mx = (int)(rx) / BLOCK_SIZE;
+            my = (int)(ry) / BLOCK_SIZE;
             mp = my * cub()->map_info->width + mx; // alterar 8 para ray()->map_x
             if(mx < cub()->map_info->width && my < cub()->map_info->height && mp > 0 && mp < (cub()->map_info->width * cub()->map_info->height) && cub()->map_info->map[my][mx] == '1')
             {
                 hx = rx;
                 hy = ry;
                 dis_h = dist(px, py, hx, hy, ra);
-                dof = 8;
+                dof = cub()->map_info->height;
             }
             else
             {
@@ -103,35 +103,35 @@ void draw_rays(double px, double py)
         double n_tan = -tan(ra);
         if(ra > P2 && ra < P3)
         {
-            rx = (((int)px >> 6) << 6) - 0.0001;
+            rx = (((int)px / BLOCK_SIZE) * BLOCK_SIZE) - 0.0001;
             ry = (px - rx) * n_tan + py;
-            xo = -64;
+            xo = -BLOCK_SIZE;
             yo = -xo * n_tan;
         }
         if(ra < P2 || ra > P3)
         {
-            rx = (((int)px>>6)<<6) + 64;
+            rx = (((int)px / BLOCK_SIZE) * BLOCK_SIZE) + BLOCK_SIZE;
             ry = (px - rx) * n_tan + py;
-            xo = 64;
+            xo = BLOCK_SIZE;
             yo = -xo * n_tan;
         }
         if(ra == 0 || ra == PI)
         {
             rx = px;
             ry = py;
-            dof = 8;
+            dof = cub()->map_info->width;
         }
-        while(dof < 8)
+        while(dof < cub()->map_info->width)
         {
-            mx = (int)(rx) >> 6;
-            my = (int)(ry) >> 6;
-            mp = my * cub()->map_info->height + mx; // alterar 7 para ray()->map_x
-             if(mx < cub()->map_info->width && my < cub()->map_info->height && mp > 0 && mp < (cub()->map_info->width * cub()->map_info->height) && cub()->map_info->map[my][mx] == '1')
+            mx = (int)(rx) / BLOCK_SIZE;
+            my = (int)(ry) / BLOCK_SIZE;
+            mp = (my * cub()->map_info->height) + mx; // alterar 7 para ray()->map_x
+            if(mx < cub()->map_info->width && my < cub()->map_info->height && mp > 0 && mp < (cub()->map_info->width * cub()->map_info->height) && cub()->map_info->map[my][mx] == '1')
             {
                 vx = rx;
                 vy = ry;
                 dis_v = dist(px, py, vx, vy, ra);
-                dof = 8;
+                dof = cub()->map_info->width;
             }
             else
             {
