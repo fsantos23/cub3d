@@ -6,7 +6,7 @@
 /*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:14:44 by fsantos2          #+#    #+#             */
-/*   Updated: 2024/04/15 18:20:36 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:10:38 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void draw_rectangle(int x1, int y1, int x2, int y2, int color)
 
 void draw_wall(float line_h, float line0, int r, int color)
 {
-    draw_rectangle((r * 10 + SCREEN_WIDTH) + 64 * cub()->map_info->width, line0, ((r * 10 + SCREEN_WIDTH) + 64 * cub()->map_info->width) + 10, line_h + line0, color);
+    draw_rectangle((r * 10 + SCREEN_WIDTH) + BLOCK_SIZE * cub()->map_info->width, line0, ((r * 10 + SCREEN_WIDTH) + BLOCK_SIZE * cub()->map_info->width) + 10, line_h + line0, color);
 }
 
 void draw_rays(double px, double py)

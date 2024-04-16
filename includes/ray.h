@@ -90,7 +90,7 @@ void clear_screen(void *mlx_ptr, void *win_ptr);
 void put_pixel(int x, int y, int color);
 __uint64_t	get_time(void);
 double get_fps(void);
-int change_pos(double pdX, double pdY);
+void change_pos(double pdX, double pdY, char letter);
 int exit_game(int keycode);
 
 #endif

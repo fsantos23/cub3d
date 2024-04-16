@@ -35,13 +35,13 @@ void draw_floor(int square_size, int x, int y)
 double direction_player(char dir)
 {
     if(dir == 'S')
-        return P3;
+        return P2;
     if(dir == 'E')
         return 0;
     if(dir == 'W')
         return PI;
     if(dir == 'N')
-        return P2;
+        return P3;
     return -1;
 }
 
@@ -120,9 +120,9 @@ int check_pos(double pdX, double pdY)
     double tempx;
     double tempy;
 
-    tempx = (ray()->player.posx + pdX + (BLOCK_SIZE / 6)) / 64;
-    tempy = (ray()->player.posy + pdY + (BLOCK_SIZE / 6)) / 64;
-    if((int)tempx < 8 && (int)tempy < 8 && cub()->map_info->map[(int)tempy][(int)tempx] == '1')
+    tempx = (ray()->player.posx + pdX + (BLOCK_SIZE / 6)) / BLOCK_SIZE;
+    tempy = (ray()->player.posy + pdY + (BLOCK_SIZE / 6)) / BLOCK_SIZE;
+    if((int)tempx < cub()->map_info->width && (int)tempy < cub()->map_info->height && cub()->map_info->map[(int)tempy][(int)tempx] == '1')
         return 0;
     return 1;
 }
@@ -138,13 +138,24 @@ double get_fps(void)
     return frame_time;
 }
 
-int change_pos(double pdX, double pdY)
+void change_pos(double pdX, double pdY, char letter)
 {
-    if(!check_pos(pdX, pdY))
-        return 0;
-    ray()->player.posx += pdX;
-    ray()->player.posy += pdY;
-    return 1;
+    if (letter == 'W')
+    {
+        if(!check_pos(pdX, pdY))
+            return ;
+            printf("HEER\n");
+        ray()->player.posx += pdX;
+        ray()->player.posy += pdY;
+    }
+    if (letter == 'S')
+    {
+        if(!check_pos(-pdX, -pdY))
+            return ;
+        ray()->player.posx -= pdX;
+        ray()->player.posy -= pdY;
+    }
+    return ;
 }
 
 void look_sideways(double pa, char letter)
@@ -154,8 +165,8 @@ void look_sideways(double pa, char letter)
         ray()->player.pa += 2 * PI;
     if(ray()->player.pa > 2 * PI && letter == 'R')
         ray()->player.pa -= 2 * PI;
-    ray()->player.pdX = cos(ray()->player.pa) * 5;
-    ray()->player.pdY = sin(ray()->player.pa) * 5;
+    ray()->player.pdX = cos(ray()->player.pa) * 0.2;
+    ray()->player.pdY = sin(ray()->player.pa) * 0.2;
 }
 
 void move_sideways(char letter)
@@ -168,7 +179,10 @@ void move_sideways(char letter)
         pa = ray()->player.pa - P2;
     if (letter == 'D')
         pa = ray()->player.pa + P2;
-    pd_x = cos(pa) * 5;
-    pd_y = sin(pa) * 5;
-    change_pos(pd_x, pd_y);
+    pd_x = cos(pa);
+    pd_y = sin(pa);
+    if (!check_pos(pd_x, pd_y))
+        return ;
+    ray()->player.posx += pd_x;
+    ray()->player.posy += pd_y;
 }

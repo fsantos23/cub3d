@@ -9,19 +9,13 @@ t_ray	*ray(void)
 void	move_player(void)
 {
 	if (ray()->move.look_left == true)
-        look_sideways(-0.1, 'L');
+        look_sideways(-0.05, 'L');
     if (ray()->move.look_right == true)
-        look_sideways(0.1, 'R');
+        look_sideways(0.05, 'R');
     if (ray()->move.up == true)
-    {
-        if(!change_pos(ray()->player.pdX, ray()->player.pdY))
-            return ;
-    }
+        change_pos(ray()->player.pdX, ray()->player.pdY, 'W');
     if (ray()->move.down == true)
-    {
-        if(!change_pos(-ray()->player.pdX, -ray()->player.pdY))
-            return ;
-    }
+        change_pos(ray()->player.pdX, ray()->player.pdY, 'S');
     if(ray()->move.left == true)
         move_sideways('A');
     if(ray()->move.right == true)
@@ -32,29 +26,27 @@ int run_game(void)
 {
     move_player();
     ft_memset(ray()->img.addr, 0, (SCREEN_HEIGHT  * SCREEN_WIDTH * ray()->img.bpp) / 8);
-    draw_map(0);
     draw_player(BLOCK_SIZE / 4, ray()->player.posx, ray()->player.posy);
+    draw_map(0);
 	mlx_put_image_to_window(ray()->mlx, ray()->mlx_win, ray()->img.ptr, 0, 0);
 	return (0);
 }
 
 int	key_press(int keycode)
 {
-		printf("HERE\n");
     if (keycode == LEFT)
-	{
         ray()->move.look_left = true;
-	}
     if (keycode == RIGHT)
         ray()->move.look_right = true;
     if (keycode == W)
         ray()->move.up = true;
     if (keycode == S)
-        ray()->move.up = true;
+        ray()->move.down = true;
     if (keycode == A)
         ray()->move.left = true;
     if (keycode == D)
         ray()->move.right = true;
+    exit_game(keycode);
 	return (0);
 }
 int key_release(int keycode)
@@ -66,7 +58,7 @@ int key_release(int keycode)
     if (keycode == W)
         ray()->move.up = false;
     if (keycode == S)
-        ray()->move.up = false;
+        ray()->move.down = false;
     if (keycode == A)
         ray()->move.left = false;
     if (keycode == D)
@@ -104,8 +96,7 @@ void create_player(void)
 	init();
     mlx_hook(ray()->mlx_win, 02, 1L << 0, key_press, NULL);
     mlx_hook(ray()->mlx_win, 03, 1L << 1, key_release, NULL);
-	mlx_hook(ray()->mlx_win, 02, 1L << 0, &exit_game, NULL);
 	mlx_hook(ray()->mlx_win, 17, 0, &quit_game, NULL);
-	mlx_loop_hook(ray()->mlx, run_game, NULL);
+	mlx_loop_hook(ray()->mlx, &run_game, NULL);
     mlx_loop(ray()->mlx);
 }
