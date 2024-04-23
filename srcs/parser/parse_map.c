@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:34:35 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:03:13 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:47:35 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../../inc/cub3d.h"
 
 int	ft_check_unclosed(char **map, char c, int i, int j)
 {

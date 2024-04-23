@@ -3,31 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   save_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:49:13 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/15 16:53:17 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/04/23 17:19:15 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../../inc/cub3d.h"
 
 void	save_player(char **map)
 {
-	int	y;
-	int	x;
+	int	i;
+	int	j;
 
-	y = -1;
-	while (map[++y])
+	i = -1;
+	while (map[++i])
 	{
-		x = -1;
-		while (map[y][++x])
+		j = -1;
+		while (map[i][++j])
 		{
-			if (ft_isplayer(map[y][x]))
+			if (ft_isplayer(map[i][j]))
 			{
-				ray()->player.posx = x;
-				ray()->player.posy = y;
-				ray()->player.pDir = map[y][x];
+				cub()->map_info->x = j;
+				cub()->map_info->y = i;
+				cub()->map_info->pDir = map[i][j];
 				return ;
 			}
 		}

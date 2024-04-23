@@ -1,55 +1,43 @@
-NAME_PROJECT = cub3d
+NAME_PROJECT = testeRay
+OBJ_DIR = obj
 
-SRCS = srcs/main/main.c srcs/ray/functions.c srcs/ray/player.c srcs/ray/3d.c \
-		srcs/ray/utils.c srcs/parser/aux/aux.c srcs/parser/aux/aux2.c srcs/parser/aux/free.c \
-		srcs/parser/init.c srcs/parser/parse_aux_functions.c srcs/parser/parse_map.c \
-		srcs/parser/parse_texture_colors.c srcs/parser/parser.c srcs/parser/save_data.c \
-		srcs/ray/exit.c
+# Use wildcard para pegar todos os arquivos .c dentro da pasta src e suas subpastas
+SRCS = $(wildcard srcs/**/*.c)
 
-OBJS = $(SRCS:.c=.o)
+# Transforma todos os arquivos .c em .o, colocando-os na pasta obj
+OBJS = $(patsubst src/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
-FLAGS = #-Wall -Wextra -Werror -g -O3
-
-MLXFLAGS = -L ./minilibx/ -lmlx -Ilmlx -lXext -lX11 -lm
-
+FLAGS = -g -Wall -Wextra -Werror -Iinc/
+MLXFLAGS = -lXext -lX11 -lm -lz
 LIBFT = libft/libft.a
-
 MLX = minilibx/libmlx_Linux.a
-
-INC = -Iincludes -I/usr/include -Ilibft/includes -Iget_next_line/includes -Iminilibx
 
 all: $(NAME_PROJECT)
 
-$(NAME_PROJECT): $(OBJS)
-	@echo $(RED) "[🚀Compiling MLX...🚀]" $(EOC)
-	@make -s -C minilibx/ > /dev/null
-	@echo $(GREEN) "[MLX Compiled!]" $(EOC)
-	@echo $(RED) "[🚀Compiling libft...🚀]" $(EOC)
-	@make -s -C libft/
-	@echo $(GREEN) "[Libft Compiled!]" $(EOC)
-	@cc $(FLAGS) $(OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) $(INC) -o $(NAME_PROJECT) 
-	@echo  $(GREEN) "[Cub3d Compiled!]" $(EOC)
+.PHONY: all clean fclean re
 
-%.o: %.c
-	@cc $(INC) $(FLAGS) -c $< -o $@
+$(NAME_PROJECT): $(OBJS)
+	@make -s -C minilibx/
+	@make -s -C libft/
+	@cc $(FLAGS) $(OBJS) $(LIBFT) $(MLX) $(MLXFLAGS) -o $(NAME_PROJECT) 
+	@echo  "$(CYAN)Build ($(NAME_PROJECT)): $(GREEN)[Success]$(RESET)"
+
+$(OBJ_DIR)/%.o: src/%.c
+	@mkdir -p $(@D)
+	@cc -c $< -o $@
 
 clean:
-	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
 	@make clean -s -C minilibx/
 	@make fclean -s -C libft/
 
 fclean: clean
-	@echo $(PURPLE) "[🧹Cleaning...🧹]" $(EOC)
-	@rm -f $(NAME_PROJECT)
+	@rm -f $(NAME_PROJECT) 
+	@echo  "$(YELLOW)Cleaned $(CYAN)$(NAME_PROJECT): $(RED)[Success]$(RESET)"
 
 re: fclean all
 
-BLACK:="\033[1;30m"
-RED:="\033[1;31m"
-GREEN:="\033[1;32m"
-PURPLE:="\033[1;35m"
-CYAN:="\033[1;36m"
-WHITE:="\033[1;37m"
-EOC:="\033[0;0m"
-
-.PHONY: all clean fclean re
+GREEN = \033[1;32m
+YELLOW = \033[1;33m
+CYAN = \033[1;36m
+RED	= \033[1;31

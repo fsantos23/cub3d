@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:39:26 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:03:05 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:17:22 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../../inc/cub3d.h"
 
 int	parse_map(char **map)
 {

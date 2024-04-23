@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:02:43 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/15 18:47:54 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/04/17 11:36:58 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../../inc/cub3d.h"
 
 int	check_num(char *str)
 {
@@ -37,14 +37,6 @@ void	save_stuff(char **content)
 	save_player(cub()->map_info->map);
 	save_textures(content);
 	save_colors(content);
-}
-
-void	init_tmap(void)
-{
-	cub()->map_info = malloc(sizeof(t_map));
-	cub()->map_info->map = NULL;
-	cub()->map_info->textures = NULL;
-	cub()->map_info->colors = NULL;
 }
 
 int	init_map_struct(char *file)

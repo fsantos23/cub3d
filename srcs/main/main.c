@@ -3,32 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:07:45 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:06:14 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../../inc/cub3d.h"
 
 t_cub	*cub(void)
 {
-	static t_cub   cub;
+	static t_cub	cub;
 
 	return (&cub);
 }
 
+void	init_tmap(void)
+{
+	cub()->map_info = malloc(sizeof(t_map));
+	cub()->map_info->map = NULL;
+	cub()->map_info->textures = NULL;
+	cub()->map_info->colors = NULL;
+}
+
 int	main(int argc, char **argv)
 {
-
-	if (argc != 2)
-	{
-		ft_putstr_fd("Error\nInvalid number of arguments\n", 2);
-		return (0);
-	}
-	if(!init_map_struct(argv[1]))
-		create_player();
+	(void)argc;
+	if(init_map_struct(argv[1]))
+		free_struct_map(cub()->map_info);
+	ft_memset(&cub()->v, 0, sizeof(t_values));
+	ft_memset(&cub()->hook, 0, sizeof(t_hooks));
+	color_convert_init();
+	
+	init_graph();
+	
 	free_struct_map(cub()->map_info);
 	return (0);
 }

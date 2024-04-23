@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../../inc/cub3d.h"
 
 int	check_identifier(char **content, int id)
 {
@@ -59,6 +59,7 @@ int	check_textures_path(char **textures)
 		fd = open(path[1], O_RDONLY);
 		if (fd < 0)
 		{
+			close(fd);
 			free_matriz(&path);
 			return (1);
 		}

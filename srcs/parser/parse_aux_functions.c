@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_aux_functions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:46:22 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/21 16:03:17 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:50:41 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "../../inc/cub3d.h"
 
 int	check_file_extension(char *filename, char *extension)
 {
