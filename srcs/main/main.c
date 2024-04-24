@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 17:48:46 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/24 23:04:07 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ int	main(int argc, char **argv)
 {
 	(void)argc;
 	if (init_map_struct(argv[1]))
+	{
 		free_struct_map(cub()->map_info);
+		return (1);
+	}
 	ft_memset(&cub()->v, 0, sizeof(t_values));
 	ft_memset(&cub()->hook, 0, sizeof(t_hooks));
 	color_convert_init();

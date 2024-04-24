@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:35:16 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 18:19:03 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/25 00:08:44 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ typedef struct s_map
 	char		**textures;
 	char		**colors;
 
-	char 		*no_texture;
-	char 		*so_texture;
-	char 		*we_texture;
-	char 		*ea_texture;
+	char		*no_texture;
+	char		*so_texture;
+	char		*we_texture;
+	char		*ea_texture;
 
 	int			floor_color;
 	int			ceil_color;
@@ -117,7 +117,7 @@ typedef struct s_cub
 	void		*winmlx;
 	t_data		img;
 	t_data		textures[4];
-	t_data 		no_texture;
+	t_data		no_texture;
 	t_values	v;
 	t_map		*map_info;
 	t_hooks		hook;
@@ -150,7 +150,8 @@ void			draw_floor(void);
 void			draw_ceiling(void);
 
 /* aux/aux4.c */
-void	save_path_texture(void);
+void			save_path_texture(void);
+int				check_player_space(char **map);
 
 /* aux/free.c */
 void			free_matriz(char ***mrtz);
@@ -168,7 +169,7 @@ void			move_a_or_d(char c);
 void			rotate(char c);
 
 /* parser/init.c */
-void			save_stuff(char **content);
+int				save_stuff(char **content);
 void			save_rgb(int *r, int *g, int *b, char **rgb);
 int				init_map_struct(char *file);
 int				check_num(char *str);

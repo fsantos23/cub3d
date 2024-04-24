@@ -1,4 +1,4 @@
-NAME_PROJECT = testeRay
+NAME_PROJECT = cub3D
 OBJ_DIR = obj
 
 # Use wildcard para pegar todos os arquivos .c dentro da pasta src e suas subpastas

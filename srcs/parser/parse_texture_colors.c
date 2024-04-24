@@ -56,6 +56,11 @@ int	check_textures_path(char **textures)
 	while (textures[++i])
 	{
 		path = ft_split(textures[i], ' ');
+		if(matriz_size(path) != 2)
+		{
+			free_matriz(&path);
+			return (1);
+		}
 		fd = open(path[1], O_RDONLY);
 		if (fd < 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:29:06 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/23 11:52:06 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/25 00:12:29 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,12 @@ void	color_convert_init(void)
 	{
 		rgb = split_trim(&cub()->map_info->colors[i][2], ',');
 		if (cub()->map_info->colors[i][0] == 'F')
-			cub()->map_info->floor_color = rgb_to_hex(ft_atoi(rgb[0]),\
-					ft_atoi(rgb[1]), ft_atoi(rgb[2]));
+			cub()->map_info->floor_color = rgb_to_hex(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
 		else
-			cub()->map_info->ceil_color = rgb_to_hex(ft_atoi(rgb[0]),\
-					ft_atoi(rgb[1]), ft_atoi(rgb[2]));
-        free_matriz(&rgb);
+			cub()->map_info->ceil_color = rgb_to_hex(ft_atoi(rgb[0]), ft_atoi(rgb[1]), ft_atoi(rgb[2]));
+		free_matriz(&rgb);
 	}
-    free_matriz(&cub()->map_info->colors);
+	free_matriz(&cub()->map_info->colors);
 }
 
 void	draw_floor(void)

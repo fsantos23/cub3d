@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:34:35 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/20 11:47:35 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/25 00:10:43 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,3 @@ int	check_multi_player(char **map)
 	}
 	return (amount);
 }
-
-
