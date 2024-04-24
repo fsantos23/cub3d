@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 14:25:21 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/04/24 17:48:46 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,10 @@ void	init_tmap(void)
 	cub()->map_info->map = NULL;
 	cub()->map_info->textures = NULL;
 	cub()->map_info->colors = NULL;
+	cub()->map_info->no_texture = NULL;
+	cub()->map_info->so_texture = NULL;
+	cub()->map_info->we_texture = NULL;
+	cub()->map_info->ea_texture = NULL;
 }
 
 int	main(int argc, char **argv)

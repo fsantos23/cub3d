@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_formulas.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:19:11 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 15:11:26 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:21:06 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	wall_height(void)
 	else
 		cub()->v.WallDist = cub()->v.sideDistY - cub()->v.deltaDistY;
 	cub()->v.lineLength = (int)(SCREEN_HEIGHT / cub()->v.WallDist);
-	cub()->v.drawStart = (SCREEN_HEIGHT / 2) - (cub()->v.lineLength / 2);
+	cub()->v.drawStart = - cub()->v.lineLength / 2 + SCREEN_HEIGHT / 2;
 	if (cub()->v.drawStart < 0)
 		cub()->v.drawStart = 0;
 	cub()->v.drawEnd = (SCREEN_HEIGHT / 2) + (cub()->v.lineLength / 2);
@@ -123,15 +123,15 @@ void	draw_wall_x(int x)
 	int				y;
 	unsigned int	color;
 
-	step = 1.0 * cub()->textures[cub()->v.index].y / cub()->v.lineLength;
+	step = (double)cub()->textures[cub()->v.index].y / cub()->v.lineLength;
 	tex_pos = (cub()->v.drawStart - SCREEN_HEIGHT / 2 + cub()->v.lineLength / 2) * step;
 	y = cub()->v.drawStart;
 	while (y < cub()->v.drawEnd)
 	{
 		tex_y = (int)tex_pos &(cub()->textures[cub()->v.index].y - 1);
 		tex_pos += step;
-		color = *(unsigned int *)(cub()->textures[cub()->v.index].addr + y * \
-		cub()->textures[cub()->v.index].line_length + x * (cub()->textures[cub()->v.index].bpp / 8));
+		color = *(unsigned int *)(cub()->textures[cub()->v.index].addr + (int)tex_y * \
+		cub()->textures[cub()->v.index].line_length + cub()->v.tex_x * (cub()->textures[cub()->v.index].bpp / 8));
 		put_pixel(x, y, color);
 		y++;
 	}

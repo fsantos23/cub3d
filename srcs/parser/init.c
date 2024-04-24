@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:02:43 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/17 11:36:58 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:35:54 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	init_map_struct(char *file)
 		free_matriz(&content);
 		return (1);
 	}
+	save_path_texture();
 	free_matriz(&content);
 	return (0);
 }

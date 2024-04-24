@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:14:44 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 14:57:05 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:07:53 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int	draw(void)
 	draw_ceiling();
 	main_raycast_loop();
 	hooks();
-	mlx_put_image_to_window(cub()->initmlx, cub()->winmlx, cub()->img.ptr, 0,
-		0);
+	mlx_put_image_to_window(cub()->initmlx, cub()->winmlx, cub()->img.ptr, 0,0);
 	return (1);
 }
 void	init_graph(void)

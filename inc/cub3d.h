@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:35:16 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 14:56:37 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:19:03 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define SCREEN_HEIGHT 720
 # define SCREEN_WIDTH 1280
 
-# define MOVE_SPEED 0.015
-# define ROTATION_SPEED 0.012
+# define MOVE_SPEED 0.025
+# define ROTATION_SPEED 0.022
 
 typedef struct s_values
 {
@@ -74,6 +74,11 @@ typedef struct s_map
 	char		**textures;
 	char		**colors;
 
+	char 		*no_texture;
+	char 		*so_texture;
+	char 		*we_texture;
+	char 		*ea_texture;
+
 	int			floor_color;
 	int			ceil_color;
 	size_t		height;
@@ -112,6 +117,7 @@ typedef struct s_cub
 	void		*winmlx;
 	t_data		img;
 	t_data		textures[4];
+	t_data 		no_texture;
 	t_values	v;
 	t_map		*map_info;
 	t_hooks		hook;
@@ -142,6 +148,9 @@ unsigned long	rgb_to_hex(int r, int g, int b);
 void			color_convert_init(void);
 void			draw_floor(void);
 void			draw_ceiling(void);
+
+/* aux/aux4.c */
+void	save_path_texture(void);
 
 /* aux/free.c */
 void			free_matriz(char ***mrtz);

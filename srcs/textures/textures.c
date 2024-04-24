@@ -3,28 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:03:05 by fsantos2          #+#    #+#             */
-/*   Updated: 2024/04/24 15:20:14 by fsantos2         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:10:31 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
+t_data	create_img(char *path)
+{
+	t_data	img;
+
+	img.ptr = mlx_xpm_file_to_image(cub()->initmlx, path, &img.x, &img.y);
+	img.addr = mlx_get_data_addr(img.ptr, &img.bpp, &img.line_length, &img.endian);
+	return (img);
+}
+
 void xpm_to_image(void)
 {
     int i;
 
-    i = 0;
-    while(i < 4)
+    i = -1;
+    while(++i < 4)
     {
-		//cub()->textures[i] = (t_data)malloc(sizeof(t_data));
-        cub()->textures[i].ptr = mlx_xpm_file_to_image(cub()->initmlx, \
-		&cub()->map_info->textures[i][2], &cub()->textures[i].x, &cub()->textures[i].y);
-        cub()->textures[i].addr = mlx_get_data_addr(cub()->textures[i].ptr, \
-		&cub()->textures[i].bpp, &cub()->textures[i].line_length, &cub()->textures[i].endian);
-		i++;
+		if(i == 0)
+			cub()->textures[i] = create_img(cub()->map_info->no_texture);
+		else if(i == 1)
+			cub()->textures[i] = create_img(cub()->map_info->so_texture);
+		else if(i == 2)
+			cub()->textures[i] = create_img(cub()->map_info->we_texture);
+		else if(i == 3)
+			cub()->textures[i] = create_img(cub()->map_info->ea_texture);
     }
 }
 
