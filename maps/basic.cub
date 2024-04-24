@@ -1,7 +1,7 @@
-NO ./sprites/creepy_face.xpm 
-SO ./sprites/firefox.xpm
-WE ./sprites/creepy_face.xpm
-EA ./sprites/creepy_face.xpm
+NO ./sprites/amorim.xpm 
+SO ./sprites/pote.xpm
+WE ./sprites/gyokers.xpm
+EA ./sprites/scp.xpm
 
 
 F 139,69,19
