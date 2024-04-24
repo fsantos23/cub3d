@@ -1,7 +1,7 @@
-NO ./srcs/parser/init.c
-SO ./srcs/parser/init.c
-WE ./srcs/parser/init.c
-EA ./srcs/parser/init.c
+NO ./sprites/creepy_face.xpm
+SO ./sprites/creepy_face.xpm
+WE ./sprites/creepy_face.xpm
+EA ./sprites/creepy_face.xpm
 
 
 F 139,69,19

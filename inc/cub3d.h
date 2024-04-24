@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:35:16 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 11:50:13 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/24 14:56:37 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ typedef struct s_values
 	int			side;
 	int			hit;
 
+	int			tex_x;
+	int			tex_y;
+	int			index;
+
 }				t_values;
 
 typedef struct s_map
@@ -107,6 +111,7 @@ typedef struct s_cub
 	void		*initmlx;
 	void		*winmlx;
 	t_data		img;
+	t_data		textures[4];
 	t_values	v;
 	t_map		*map_info;
 	t_hooks		hook;
@@ -199,4 +204,9 @@ void			draw_wall_x(int x);
 
 /* raycast/raycast.c */
 void			init_graph(void);
+
+/* textures/textures.c */
+void			xpm_to_image(void);
+void			wall_hit_point(void);
+
 #endif

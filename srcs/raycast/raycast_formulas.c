@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_formulas.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fsantos2 <fsantos2@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:19:11 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 11:25:09 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/24 15:11:26 by fsantos2         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,24 @@ void	calculate_initial_sideDist(void)
 	}
 }
 
+void	set_texture(void)
+{
+	if (cub()->v.side == 1)
+	{
+		if (cub()->v.mapY > cub()->v.posY)
+			cub()->v.index = 1;
+		else
+			cub()->v.index = 0;
+	}
+	else if (cub()->v.side == 0)
+	{
+		if (cub()->v.mapX > cub()->v.posX)
+			cub()->v.index = 3;
+		else
+			cub()->v.index = 2;
+	}
+}
+
 void	dda_loop(void)
 {
 	cub()->v.hit = 0;
@@ -75,7 +93,10 @@ void	dda_loop(void)
 			cub()->v.side = 1;
 		}
 		if (cub()->map_info->map[cub()->v.mapY][cub()->v.mapX] == '1')
+		{
 			cub()->v.hit = 1;
+			set_texture();
+		}
 	}
 }
 
@@ -96,16 +117,21 @@ void	wall_height(void)
 
 void	draw_wall_x(int x)
 {
+	double			step;
+	double			tex_pos;
+	double			tex_y;
 	int				y;
 	unsigned int	color;
 
-	if (cub()->v.side == 1)
-		color = rgb_to_hex(255, 238, 0); 
-	else
-		color = rgb_to_hex(61, 1, 52); 
+	step = 1.0 * cub()->textures[cub()->v.index].y / cub()->v.lineLength;
+	tex_pos = (cub()->v.drawStart - SCREEN_HEIGHT / 2 + cub()->v.lineLength / 2) * step;
 	y = cub()->v.drawStart;
 	while (y < cub()->v.drawEnd)
 	{
+		tex_y = (int)tex_pos &(cub()->textures[cub()->v.index].y - 1);
+		tex_pos += step;
+		color = *(unsigned int *)(cub()->textures[cub()->v.index].addr + y * \
+		cub()->textures[cub()->v.index].line_length + x * (cub()->textures[cub()->v.index].bpp / 8));
 		put_pixel(x, y, color);
 		y++;
 	}
