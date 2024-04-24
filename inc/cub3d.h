@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:35:16 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/23 17:50:42 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/24 11:50:13 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define SCREEN_HEIGHT 720
 # define SCREEN_WIDTH 1280
 
-# define MOVE_SPEED 0.024
-# define ROTATION_SPEED 0.02
+# define MOVE_SPEED 0.015
+# define ROTATION_SPEED 0.012
 
 typedef struct s_values
 {
@@ -112,8 +112,10 @@ typedef struct s_cub
 	t_hooks		hook;
 }				t_cub;
 
+/* main/main.c */
 t_cub			*cub(void);
 void			init_tmap(void);
+void			set_player_dir(void);
 
 /* aux/aux.c */
 int				ft_istexture_or_color(char *content);
@@ -129,9 +131,27 @@ int				ft_have_only_number(char *content);
 char			**split_trim(char *input, char c);
 void			print_msg_error(char *msg, int *flag);
 
+/* aux/aux3.c */
+void			put_pixel(int x, int y, int color);
+unsigned long	rgb_to_hex(int r, int g, int b);
+void			color_convert_init(void);
+void			draw_floor(void);
+void			draw_ceiling(void);
+
 /* aux/free.c */
 void			free_matriz(char ***mrtz);
 void			free_struct_map(t_map *map);
+
+/* hooks/hook.c */
+void			hooks(void);
+int				key_release(int keycode);
+int				key_press(int keycode);
+int				quit_game(void);
+
+/* hooks/move_formulas.c */
+void			move_w_or_s(char c);
+void			move_a_or_d(char c);
+void			rotate(char c);
 
 /* parser/init.c */
 void			save_stuff(char **content);
@@ -170,15 +190,13 @@ char			**save_file_content(char *file);
 void			save_textures(char **content);
 void			save_colors(char **content);
 
-void			color_convert_init(void);
-void			init_graph(void);
-void			put_pixel(int x, int y, int color);
-unsigned long	rgb_to_hex(int r, int g, int b);
+/* raycast/raycast_formulas.c */
+void			calculate_ray_pos(int x);
+void			calculate_initial_sideDist(void);
+void			dda_loop(void);
+void			wall_height(void);
+void			draw_wall_x(int x);
 
-void			draw_ceiling(void);
-void			draw_floor(void);
-void			hooks(void);
-int				key_release(int keycode);
-int				key_press(int keycode);
-int				quit_game(void);
+/* raycast/raycast.c */
+void			init_graph(void);
 #endif
