@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:26:50 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 11:28:27 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:48:09 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ void	move_w_or_s(char c)
 {
 	if (c == 'w')
 	{
-		if (cub()->map_info->map[(int)(cub()->v.posY)][(int)(cub()->v.posX
-				+ cub()->v.dirX * MOVE_SPEED)] != '1')
-			cub()->v.posX += cub()->v.dirX * MOVE_SPEED;
-		if (cub()->map_info->map[(int)(cub()->v.posY + cub()->v.dirY
-				* MOVE_SPEED)][(int)cub()->v.posX] != '1')
-			cub()->v.posY += cub()->v.dirY * MOVE_SPEED;
+		if (cub()->map_info->map[(int)(cub()->v.pos_y)][(int)(cub()->v.pos_x + \
+			cub()->v.dir_x * MOVE_SPEED)] != '1')
+			cub()->v.pos_x += cub()->v.dir_x * MOVE_SPEED;
+		if (cub()->map_info->map[(int)(cub()->v.pos_y + cub()->v.dir_y \
+				* MOVE_SPEED)][(int)cub()->v.pos_x] != '1')
+			cub()->v.pos_y += cub()->v.dir_y * MOVE_SPEED;
 	}
 	else if (c == 's')
 	{
-		if (cub()->map_info->map[(int)(cub()->v.posY)][(int)(cub()->v.posX
-				- cub()->v.dirX * MOVE_SPEED)] != '1')
-			cub()->v.posX -= cub()->v.dirX * MOVE_SPEED;
-		if (cub()->map_info->map[(int)(cub()->v.posY - cub()->v.dirY
-				* MOVE_SPEED)][(int)cub()->v.posX] != '1')
-			cub()->v.posY -= cub()->v.dirY * MOVE_SPEED;
+		if (cub()->map_info->map[(int)(cub()->v.pos_y)][(int)(cub()->v.pos_x \
+				- cub()->v.dir_x * MOVE_SPEED)] != '1')
+			cub()->v.pos_x -= cub()->v.dir_x * MOVE_SPEED;
+		if (cub()->map_info->map[(int)(cub()->v.pos_y - cub()->v.dir_y \
+				* MOVE_SPEED)][(int)cub()->v.pos_x] != '1')
+			cub()->v.pos_y -= cub()->v.dir_y * MOVE_SPEED;
 	}
 }
 
@@ -38,57 +38,57 @@ void	move_a_or_d(char c)
 {
 	if (c == 'a')
 	{
-		if (cub()->map_info->map[(int)cub()->v.posY][(int)(cub()->v.posX
-				+ cub()->v.dirY * MOVE_SPEED)] != '1')
-			cub()->v.posX += cub()->v.dirY * MOVE_SPEED;
-		if (cub()->map_info->map[(int)(cub()->v.posY - cub()->v.dirX
-				* MOVE_SPEED)][(int)cub()->v.posX] != '1')
-			cub()->v.posY -= cub()->v.dirX * MOVE_SPEED;
+		if (cub()->map_info->map[(int)cub()->v.pos_y][(int)(cub()->v.pos_x \
+				+ cub()->v.dir_y * MOVE_SPEED)] != '1')
+			cub()->v.pos_x += cub()->v.dir_y * MOVE_SPEED;
+		if (cub()->map_info->map[(int)(cub()->v.pos_y - cub()->v.dir_x \
+				* MOVE_SPEED)][(int)cub()->v.pos_x] != '1')
+			cub()->v.pos_y -= cub()->v.dir_x * MOVE_SPEED;
 	}
 	else if (c == 'd')
 	{
-		if (cub()->map_info->map[(int)cub()->v.posY][(int)(cub()->v.posX
-				- cub()->v.dirY * MOVE_SPEED)] != '1')
-			cub()->v.posX -= cub()->v.dirY * MOVE_SPEED;
-		if (cub()->map_info->map[(int)(cub()->v.posY + cub()->v.dirX
-				* MOVE_SPEED)][(int)cub()->v.posX] != '1')
-			cub()->v.posY += cub()->v.dirX * MOVE_SPEED;
+		if (cub()->map_info->map[(int)cub()->v.pos_y][(int)(cub()->v.pos_x \
+				- cub()->v.dir_y * MOVE_SPEED)] != '1')
+			cub()->v.pos_x -= cub()->v.dir_y * MOVE_SPEED;
+		if (cub()->map_info->map[(int)(cub()->v.pos_y + cub()->v.dir_x \
+				* MOVE_SPEED)][(int)cub()->v.pos_x] != '1')
+			cub()->v.pos_y += cub()->v.dir_x * MOVE_SPEED;
 	}
 }
 
-void	rotate_left(double old_dirX, double old_planeX)
+void	rotate_left(double old_dirx, double old_planex)
 {
-	cub()->v.dirX = cub()->v.dirX * cos(-ROTATION_SPEED) - cub()->v.dirY
+	cub()->v.dir_x = cub()->v.dir_x * cos(-ROTATION_SPEED) - cub()->v.dir_y \
 		* sin(-ROTATION_SPEED);
-	cub()->v.dirY = old_dirX * sin(-ROTATION_SPEED) + cub()->v.dirY
+	cub()->v.dir_y = old_dirx * sin(-ROTATION_SPEED) + cub()->v.dir_y \
 		* cos(-ROTATION_SPEED);
-	cub()->v.planeX = cub()->v.planeX * cos(-ROTATION_SPEED) - cub()->v.planeY
-		* sin(-ROTATION_SPEED);
-	cub()->v.planeY = old_planeX * sin(-ROTATION_SPEED) + cub()->v.planeY
+	cub()->v.plane_x = cub()->v.plane_x * cos(-ROTATION_SPEED) - \
+		cub()->v.plane_y * sin(-ROTATION_SPEED);
+	cub()->v.plane_y = old_planex * sin(-ROTATION_SPEED) + cub()->v.plane_y \
 		* cos(-ROTATION_SPEED);
 }
 
-void	rotate_right(double old_dirX, double old_planeX)
+void	rotate_right(double old_dirx, double old_planex)
 {
-	cub()->v.dirX = cub()->v.dirX * cos(ROTATION_SPEED) - cub()->v.dirY
+	cub()->v.dir_x = cub()->v.dir_x * cos(ROTATION_SPEED) - cub()->v.dir_y \
 		* sin(ROTATION_SPEED);
-	cub()->v.dirY = old_dirX * sin(ROTATION_SPEED) + cub()->v.dirY
-		* cos(ROTATION_SPEED);
-	cub()->v.planeX = cub()->v.planeX * cos(ROTATION_SPEED) - cub()->v.planeY
-		* sin(ROTATION_SPEED);
-	cub()->v.planeY = old_planeX * sin(ROTATION_SPEED) + cub()->v.planeY
+	cub()->v.dir_y = old_dirx * sin(ROTATION_SPEED) + cub()->v.dir_y * \
+		cos(ROTATION_SPEED);
+	cub()->v.plane_x = cub()->v.plane_x * cos(ROTATION_SPEED) - \
+		cub()->v.plane_y * sin(ROTATION_SPEED);
+	cub()->v.plane_y = old_planex * sin(ROTATION_SPEED) + cub()->v.plane_y \
 		* cos(ROTATION_SPEED);
 }
 
 void	rotate(char c)
 {
-	double	old_dirX;
-	double	old_planeX;
+	double	old_dirx;
+	double	old_planex;
 
-	old_dirX = cub()->v.dirX;
-	old_planeX = cub()->v.planeX;
+	old_dirx = cub()->v.dir_x;
+	old_planex = cub()->v.plane_x;
 	if (c == 'l')
-		rotate_left(old_dirX, old_planeX);
+		rotate_left(old_dirx, old_planex);
 	else if (c == 'r')
-		rotate_right(old_dirX, old_planeX);
+		rotate_right(old_dirx, old_planex);
 }

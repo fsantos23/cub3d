@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 17:34:26 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 11:43:58 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:06:22 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 int	quit_game(void)
 {
+	int	i;
+
 	free_struct_map(cub()->map_info);
 	mlx_destroy_image(cub()->initmlx, cub()->img.ptr);
+	i = -1;
+	while (++i < 4)
+		mlx_destroy_image(cub()->initmlx, cub()->textures[i].ptr);
 	mlx_destroy_window(cub()->initmlx, cub()->winmlx);
 	mlx_destroy_display(cub()->initmlx);
 	free(cub()->initmlx);

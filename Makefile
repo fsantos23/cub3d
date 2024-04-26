@@ -1,10 +1,12 @@
 NAME_PROJECT = cub3D
 OBJ_DIR = obj
 
-# Use wildcard para pegar todos os arquivos .c dentro da pasta src e suas subpastas
-SRCS = $(wildcard srcs/**/*.c)
+SRCS = srcs/parser/parser.c srcs/parser/init.c srcs/parser/parse_map.c srcs/parser/save_data.c \
+	srcs/parser/parse_aux_functions.c srcs/parser/parse_texture_colors.c srcs/aux/free.c \
+	srcs/aux/aux.c srcs/aux/aux2.c srcs/aux/aux4.c srcs/aux/aux3.c srcs/hooks/hook.c \
+	srcs/hooks/move_formulas.c srcs/raycast/raycast_formulas.c srcs/raycast/raycast.c \
+	srcs/textures/textures.c srcs/main/main.c
 
-# Transforma todos os arquivos .c em .o, colocando-os na pasta obj
 OBJS = $(patsubst src/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 FLAGS = -g -Wall -Wextra -Werror -Iinc/

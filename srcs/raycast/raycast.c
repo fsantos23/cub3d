@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:14:44 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/26 10:02:24 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:44:29 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	save_mapxy(void)
 {
-	cub()->v.mapX = (int)cub()->v.posX;
-	cub()->v.mapY = (int)cub()->v.posY;
+	cub()->v.mapx = (int)cub()->v.pos_x;
+	cub()->v.mapy = (int)cub()->v.pos_y;
 }
 
 int	main_raycast_loop(void)
@@ -27,7 +27,7 @@ int	main_raycast_loop(void)
 	{
 		save_mapxy();
 		calculate_ray_pos(x);
-		calculate_initial_sideDist();
+		calculate_initial_sidedist();
 		dda_loop();
 		wall_height();
 		wall_hit_point();
@@ -42,9 +42,11 @@ int	draw(void)
 	draw_ceiling();
 	main_raycast_loop();
 	hooks();
-	mlx_put_image_to_window(cub()->initmlx, cub()->winmlx, cub()->img.ptr, 0,0);
+	mlx_put_image_to_window(cub()->initmlx, cub()->winmlx, cub()->img.ptr, 0,
+		0);
 	return (1);
 }
+
 void	init_graph(void)
 {
 	cub()->initmlx = mlx_init();

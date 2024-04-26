@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:39:26 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 23:45:59 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:13:46 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	parse_map(char **map)
 	rt = 0;
 	if (check_characters(map))
 		print_msg_error("Error, Invalid characters", &rt);
-	else if(check_player_space(map))
+	else if (check_player_space(map))
 		print_msg_error("Error, Invalid map", &rt);
 	else if (check_close_map(map))
 		print_msg_error("Error, Map not closed", &rt);

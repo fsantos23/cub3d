@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:02:43 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 23:39:30 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:14:08 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	check_num(char *str)
 	}
 	return (0);
 }
+
 void	save_rgb(int *r, int *g, int *b, char **rgb)
 {
 	*r = ft_atoi(rgb[0]);
@@ -35,13 +36,13 @@ int	save_stuff(char **content)
 {
 	save_map(content);
 	save_player(cub()->map_info->map);
-	if(parse_map(cub()->map_info->map))
-		return 1;
+	if (parse_map(cub()->map_info->map))
+		return (1);
 	save_textures(content);
 	save_colors(content);
-	if(parse_textures_colors(content))
-		return 1;
-	return 0;
+	if (parse_textures_colors(content))
+		return (1);
+	return (0);
 }
 
 int	init_map_struct(char *file)

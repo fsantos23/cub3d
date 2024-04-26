@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 15:24:05 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/25 00:08:30 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:05:33 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	save_path_texture(void)
 	char	**temp;
 
 	i = -1;
-	temp = split_trim(cub()->map_info->textures[0], ' ');
 	while (cub()->map_info->textures[++i])
 	{
 		temp = split_trim(cub()->map_info->textures[i], ' ');
@@ -60,4 +59,22 @@ int	check_player_space(char **map)
 		}
 	}
 	return (0);
+}
+
+void	set_texture(void)
+{
+	if (cub()->v.side == 1)
+	{
+		if (cub()->v.mapy > cub()->v.pos_y)
+			cub()->v.index = 1;
+		else
+			cub()->v.index = 0;
+	}
+	else if (cub()->v.side == 0)
+	{
+		if (cub()->v.mapx > cub()->v.pos_x)
+			cub()->v.index = 3;
+		else
+			cub()->v.index = 2;
+	}
 }

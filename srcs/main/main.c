@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 15:00:02 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 23:04:07 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:47:16 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,25 @@ t_cub	*cub(void)
 	return (&cub);
 }
 
-void	set_dir(double dirX, double dirY, double planeX, double planeY)
+void	set_dir(double dir_x, double dir_y, double plane_x, double plane_y)
 {
-	cub()->v.dirX = dirX;
-	cub()->v.dirY = dirY;
-	cub()->v.planeX = planeX;
-	cub()->v.planeY = planeY;
+	cub()->v.dir_x = dir_x;
+	cub()->v.dir_y = dir_y;
+	cub()->v.plane_x = plane_x;
+	cub()->v.plane_y = plane_y;
 }
 
 void	set_player_dir(void)
 {
-	cub()->v.posX = cub()->map_info->x + 0.5;
-	cub()->v.posY = cub()->map_info->y + 0.5;
-	if (cub()->map_info->pDir == 'N')
+	cub()->v.pos_x = cub()->map_info->x + 0.5;
+	cub()->v.pos_y = cub()->map_info->y + 0.5;
+	if (cub()->map_info->p_dir == 'N')
 		set_dir(0, -1, 0.85, 0);
-	else if (cub()->map_info->pDir == 'S')
+	else if (cub()->map_info->p_dir == 'S')
 		set_dir(0, 1, -0.85, 0);
-	else if (cub()->map_info->pDir == 'E')
+	else if (cub()->map_info->p_dir == 'E')
 		set_dir(1, 0, 0, 0.85);
-	else if (cub()->map_info->pDir == 'W')
+	else if (cub()->map_info->p_dir == 'W')
 		set_dir(-1, 0, 0, -0.85);
 }
 

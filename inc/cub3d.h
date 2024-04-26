@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:35:16 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/26 10:02:24 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:50:43 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,36 +28,36 @@
 
 typedef struct s_values
 {
-	double		rayDirX;
-	double		rayDirY;
+	double		ray_dirx;
+	double		ray_diry;
 
-	double		dirX;
-	double		dirY;
+	double		dir_x;
+	double		dir_y;
 
-	double		posX;
-	double		posY;
+	double		pos_x;
+	double		pos_y;
 
-	double		planeX;
-	double		planeY;
+	double		plane_x;
+	double		plane_y;
 
-	double		deltaDistX;
-	double		deltaDistY;
+	double		delta_distx;
+	double		delta_disty;
 
-	int			stepX;
-	int			stepY;
+	int			stepx;
+	int			stepy;
 
-	double		sideDistX;
-	double		sideDistY;
+	double		side_distx;
+	double		side_disty;
 
-	double		WallDist;
+	double		walldist;
 
-	int			mapX;
-	int			mapY;
+	int			mapx;
+	int			mapy;
 
-	int			lineLength;
+	int			line_length;
 
-	int			drawStart;
-	int			drawEnd;
+	int			draw_start;
+	int			draw_end;
 
 	int			side;
 	int			hit;
@@ -86,7 +86,7 @@ typedef struct s_map
 
 	int			x;
 	int			y;
-	char		pDir;
+	char		p_dir;
 }				t_map;
 
 typedef struct s_hooks
@@ -117,7 +117,6 @@ typedef struct s_cub
 	void		*winmlx;
 	t_data		img;
 	t_data		textures[4];
-	t_data		no_texture;
 	t_values	v;
 	t_map		*map_info;
 	t_hooks		hook;
@@ -152,6 +151,7 @@ void			draw_ceiling(void);
 /* aux/aux4.c */
 void			save_path_texture(void);
 int				check_player_space(char **map);
+void			set_texture(void);
 
 /* aux/free.c */
 void			free_matriz(char ***mrtz);
@@ -207,7 +207,7 @@ void			save_colors(char **content);
 
 /* raycast/raycast_formulas.c */
 void			calculate_ray_pos(int x);
-void			calculate_initial_sideDist(void);
+void			calculate_initial_sidedist(void);
 void			dda_loop(void);
 void			wall_height(void);
 void			draw_wall(int x);

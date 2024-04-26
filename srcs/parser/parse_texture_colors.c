@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_texture_colors.c                                   :+:      :+:    :+:   */
+/*   parse_texture_colors.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 16:50:25 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/03/15 16:03:05 by hlindeza         ###   ########.fr       */
+/*   Created: 2024/04/26 10:15:15 by hlindeza          #+#    #+#             */
+/*   Updated: 2024/04/26 10:15:26 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	check_textures_path(char **textures)
 	while (textures[++i])
 	{
 		path = ft_split(textures[i], ' ');
-		if(matriz_size(path) != 2)
+		if (matriz_size(path) != 2)
 		{
 			free_matriz(&path);
 			return (1);

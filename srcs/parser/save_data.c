@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 11:49:13 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 23:34:37 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:47:16 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	save_player(char **map)
 			{
 				cub()->map_info->x = j;
 				cub()->map_info->y = i;
-				cub()->map_info->pDir = map[i][j];
+				cub()->map_info->p_dir = map[i][j];
 				return ;
 			}
 		}
@@ -44,7 +44,7 @@ void	save_map(char **content)
 	while (content[i] && !ft_have_only_number(content[i]))
 		i++;
 	cub()->map_info->map = malloc(sizeof(char *) * (matriz_size(&content[i])
-				+ 1));
+			+ 1));
 	if (!cub()->map_info->map)
 		return ;
 	cub()->map_info->width = 0;
