@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 11:19:11 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 18:21:06 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:02:24 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	wall_height(void)
 		cub()->v.drawEnd = SCREEN_HEIGHT - 1;
 }
 
-void	draw_wall_x(int x)
+void	draw_wall(int x)
 {
 	double			step;
 	double			tex_pos;

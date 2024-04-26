@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:35:16 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/25 00:08:44 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:02:24 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,7 +210,7 @@ void			calculate_ray_pos(int x);
 void			calculate_initial_sideDist(void);
 void			dda_loop(void);
 void			wall_height(void);
-void			draw_wall_x(int x);
+void			draw_wall(int x);
 
 /* raycast/raycast.c */
 void			init_graph(void);

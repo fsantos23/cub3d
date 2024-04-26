@@ -1,11 +1,11 @@
-NO ./sprites/amorim.xpm 
-SO ./sprites/pote.xpm
+NO ./sprites/pote_c.xpm 
+SO ./sprites/morita.xpm
 WE ./sprites/gyokers.xpm
-EA ./sprites/scp.xpm
+EA ./sprites/porro_c.xpm
 
 
-F 139,69,19
-C 135,206,235
+C 146, 222, 247
+F 242, 179, 119
 
 
 

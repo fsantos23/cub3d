@@ -6,7 +6,7 @@
 /*   By: hlindeza <hlindeza@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 11:14:44 by hlindeza          #+#    #+#             */
-/*   Updated: 2024/04/24 23:02:21 by hlindeza         ###   ########.fr       */
+/*   Updated: 2024/04/26 10:02:24 by hlindeza         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main_raycast_loop(void)
 		dda_loop();
 		wall_height();
 		wall_hit_point();
-		draw_wall_x(x);
+		draw_wall(x);
 	}
 	return (0);
 }
